@@ -6,6 +6,7 @@ module com.example.stkcontrol {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
     opens com.example.stkcontrol to javafx.fxml;
     exports com.example.stkcontrol;
