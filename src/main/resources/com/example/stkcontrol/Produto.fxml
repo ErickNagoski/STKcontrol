@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stkcontrol.Produto">
+   <children>
+      <TextField fx:id="txtCodigo" layoutX="14.0" layoutY="54.0" promptText="Código" />
+      <Button fx:id="btnSearch" layoutX="202.0" layoutY="54.0" mnemonicParsing="false" onAction="#Search" text="Pesquisar" />
+      <TextField fx:id="txtDescricao" layoutX="14.0" layoutY="104.0" promptText="Descrição" />
+   </children>
+</AnchorPane>

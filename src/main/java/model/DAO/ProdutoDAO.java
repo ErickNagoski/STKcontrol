@@ -13,15 +13,15 @@ public class ProdutoDAO {
         this.con = ConnectionFactory.getConnection();
     }
 
-    public void adicionarNovoProduto() throws SQLException {
+    public void adicionarNovoProduto(String cd, String descricao) throws SQLException {
         String sql = "INSERT INTO produto(codigo, descricao, preco_custo, preco_venda, ipi, unidade_medida, multiplo, endereco, fornecedor_id) values (?,?,?,?,?,?,?,?,?);";
         PreparedStatement stmt = null;
 
         try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
 
-            stmt.setString(1, "5");
-            stmt.setString(2, "produto de teste");
+            stmt.setString(1, cd);
+            stmt.setString(2, descricao);
             stmt.setString(3, String.valueOf(10));
             stmt.setString(4, String.valueOf(26.20));
             stmt.setString(5, String.valueOf(3));
