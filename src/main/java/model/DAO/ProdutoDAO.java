@@ -4,6 +4,7 @@ import connection.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ProdutoDAO {
@@ -38,8 +39,28 @@ public class ProdutoDAO {
         }
     }
 
-    public void buscarProduto(String codigo){
+    public void buscarProduto(String codigo) throws SQLException {
+        String sql = "SELECT * FROM stkcontrol.produto WHERE codigo = ?;";
 
+        try (PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql)) {
+            stmt.setString(1, codigo);
+            ResultSet rs = stmt.executeQuery();
+
+
+            while (rs.next()) {
+                    System.out.println(rs.getString("descricao"));
+                    System.out.println(rs.getString("preco_custo"));
+                    System.out.println(rs.getString("preco_venda"));
+                    System.out.println(rs.getString("ipi"));
+                    System.out.println(rs.getString("unidade_medida"));
+                    System.out.println(rs.getString("multiplo"));
+                    System.out.println(rs.getString("endereco"));
+                    System.out.println(rs.getString("fornecedor_id"));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println("Erro " + ex);
+        }
     }
 
     public void removerProduto(String codigo) throws SQLException {

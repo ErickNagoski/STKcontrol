@@ -9,17 +9,47 @@ import java.sql.SQLException;
 
 public class Produto {
     @FXML
-    private Button btnSearch;
+    private TextField txtFornecedor;
+
+    @FXML
+    private TextField txtCusto;
+
+    @FXML
+    private TextField txtIpi;
+
+    @FXML
+    private TextField txtEndereco;
+
+    @FXML
+    private TextField txtUm;
+
+    @FXML
+    private TextField txtMultiplo;
 
     @FXML
     private TextField txtCodigo;
 
     @FXML
     private TextField txtDescricao;
+
     @FXML
-    void Search(ActionEvent event) throws SQLException {
+    private TextField txtQuantidade;
+
+    @FXML
+    private Button btnSubmit;
+
+    @FXML
+    private TextField txtPreco;
+
+    @FXML
+    void Submit(ActionEvent event) throws SQLException {
         ProdutoDAO dao = new ProdutoDAO();
         dao.adicionarNovoProduto(txtCodigo.getText(), txtDescricao.getText());
+    }
+
+    @FXML
+    void checkLength(ActionEvent event) {
+        System.out.println(txtDescricao.getLength());
     }
 
 }

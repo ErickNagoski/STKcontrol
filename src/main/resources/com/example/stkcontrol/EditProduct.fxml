@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="492.0" prefWidth="406.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stkcontrol.EditProductController">
+   <children>
+      <Button fx:id="btnSearch" layoutX="193.0" layoutY="99.0" mnemonicParsing="false" onAction="#search" text="Buscar" />
+      <TextField fx:id="txtCode" layoutX="31.0" layoutY="99.0" promptText="Código" />
+      <TextField fx:id="txtDescricao" layoutX="31.0" layoutY="156.0" prefHeight="25.0" prefWidth="359.0" promptText="Nova Descriçao" />
+      <TextField fx:id="txtPreco" layoutX="31.0" layoutY="226.0" promptText="Novo Preço" />
+      <TextField fx:id="txtCusto" layoutX="244.0" layoutY="345.0" promptText="Novo custo" />
+      <Text fx:id="lblDescricao" layoutX="31.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descricao: " />
+      <Text fx:id="lblPreco" layoutX="31.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preço atual: " />
+      <Text fx:id="lblCusto" layoutX="244.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Custo Atual: " />
+      <Text fx:id="lblUm" layoutX="31.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidade de medida: " />
+      <TextField fx:id="txtUm" layoutX="31.0" layoutY="284.0" promptText="Nova UM" />
+      <Text fx:id="lblIpi" layoutX="244.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\% IPI: " />
+      <TextField fx:id="txtIpi" layoutX="244.0" layoutY="225.0" promptText="Nova % IPI" />
+      <Text fx:id="lblEndereco" layoutX="31.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço de Estoque: " />
+      <TextField fx:id="txtEndereco" layoutX="31.0" layoutY="407.0" promptText="Novo endereçamento" />
+      <Text fx:id="lblMultiplo" layoutX="244.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mútiplo de venda: " />
+      <TextField fx:id="txtMultiplo" layoutX="244.0" layoutY="283.0" prefHeight="25.0" prefWidth="149.0" promptText="Novo Múltiplo" />
+      <Text layoutX="29.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 900; -fx-font-size: 26;" text="Ediçao de Produto">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblEstoque" layoutX="244.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantidade em estoque:" />
+      <TextField fx:id="txtEstoque" layoutX="244.0" layoutY="406.0" promptText="Nova quantidade" />
+      <Text fx:id="lblFornecedor" layoutX="31.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fornecedor atual:" />
+      <TextField fx:id="txtFornecedor" layoutX="31.0" layoutY="346.0" promptText="Novo Fornecedor" />
+      <Button fx:id="btnSubmit" layoutX="177.0" layoutY="453.0" mnemonicParsing="false" onAction="#submit" text="Atualizar" />
+   </children>
+</AnchorPane>
