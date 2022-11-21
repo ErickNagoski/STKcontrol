@@ -4,7 +4,7 @@
  */
 package Class;
 
-import com.example.stkcontrol.HelloApplication;
+import com.example.stkcontrol.Application;
 
 /**
  *
