@@ -19,7 +19,7 @@
       <TextField fx:id="txtMultiplo" layoutX="211.0" layoutY="246.0" promptText="Múltiplo de Venda" />
       <TextField fx:id="txtEndereco" layoutX="211.0" layoutY="291.0" promptText="Endereço Estoque" />
       <TextField fx:id="txtFornecedor" layoutX="14.0" layoutY="246.0" promptText="Código Fornecedor" />
-      <Text layoutX="65.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 900; -fx-font-size: 26;" text="Cadastro de Produto">
+      <Text fill="#13e428" layoutX="65.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 900; -fx-font-size: 26;" text="Cadastro de Produto">
          <font>
             <Font size="24.0" />
          </font>

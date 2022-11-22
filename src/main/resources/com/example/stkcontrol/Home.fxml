@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
@@ -8,17 +9,30 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stkcontrol.HomeController">
    <children>
-      <Button fx:id="btnEdit" layoutX="278.0" layoutY="220.0" mnemonicParsing="false" onAction="#edit" text="Editar" />
-      <Button layoutX="277.0" layoutY="188.0" mnemonicParsing="false" text="Venda" />
-      <Pane layoutX="202.0" layoutY="101.0" prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="btnCadastro" layoutX="68.0" layoutY="57.0" mnemonicParsing="false" onAction="#cadastro" text="Cadastro" />
-            <Canvas height="200.0" layoutX="7.0" width="200.0">
-               <effect>
-                  <ColorInput paint="#15a824" />
-               </effect>
-            </Canvas>
-         </children>
-      </Pane>
+      <Button fx:id="btnEdit" layoutX="250.0" layoutY="230.0" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="100.0" text="Editar">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="252.0" layoutY="195.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Venda">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
+      <Text fill="#13dd0f" layoutX="199.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bem-Vindo">
+         <font>
+            <Font name="Arial Bold" size="39.0" />
+         </font>
+      </Text>
+      <Button layoutX="250.0" layoutY="162.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Cadastrar">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="250.0" layoutY="265.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Acessar ">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
