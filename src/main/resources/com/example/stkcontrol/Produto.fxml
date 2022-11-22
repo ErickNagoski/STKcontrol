@@ -10,7 +10,7 @@
 <AnchorPane prefHeight="451.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stkcontrol.Produto">
    <children>
       <TextField fx:id="txtCodigo" layoutX="14.0" layoutY="115.0" promptText="Código" />
-      <Button fx:id="btnSubmit" layoutX="137.0" layoutY="394.0" mnemonicParsing="false" onAction="#Submit" prefHeight="25.0" prefWidth="149.0" text="Cadastrar" />
+      <Button fx:id="btnSubmit" layoutX="113.0" layoutY="393.0" mnemonicParsing="false" onAction="#Submit" prefHeight="25.0" prefWidth="149.0" text="Cadastrar" />
       <TextField fx:id="txtDescricao" layoutX="14.0" layoutY="157.0" onInputMethodTextChanged="#checkLength" prefHeight="25.0" prefWidth="346.0" promptText="Descrição" />
       <TextField fx:id="txtCusto" layoutX="14.0" layoutY="200.0" promptText="Preco Custo (R$)" />
       <TextField fx:id="txtPreco" layoutX="14.0" layoutY="291.0" promptText="Preco de venda (R$)" />
