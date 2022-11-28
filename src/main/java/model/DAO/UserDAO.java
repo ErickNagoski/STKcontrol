@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import Class.Usuario;
 
 public class UserDAO {
     private static Connection con = null;
@@ -16,7 +17,6 @@ public class UserDAO {
 
     public boolean login(String username, String password){
         String sql = "SELECT username, senha FROM usuario WHERE username = ? AND senha  = ?;";
-
         try (PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql)) {
             stmt.setString(1, username);
             stmt.setString(2, password);
@@ -32,7 +32,7 @@ public class UserDAO {
         return false;
     }
 
-    public boolean cadastro() throws SQLException {
+    public boolean cadastro(Usuario newUser) throws SQLException {
         String sql = "INSERT INTO usuario (username, email, senha) VALUES (?,?,?)";
 
         PreparedStatement stmt = null;
@@ -40,12 +40,13 @@ public class UserDAO {
         try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
 
-            stmt.setString(1, "username");
-            stmt.setString(2, "email");
-            stmt.setString(3, "senha");
+            stmt.setString(1, newUser.getNome());
+            stmt.setString(2, newUser.getEmail());
+            stmt.setString(3, newUser.getSenha());
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
+            //log
             System.err.println("Erro " + ex);
             return false;
         } finally {

@@ -10,4 +10,6 @@ module com.example.stkcontrol {
 
     opens com.example.stkcontrol to javafx.fxml;
     exports com.example.stkcontrol;
+    exports Controllers;
+    opens Controllers to javafx.fxml;
 }

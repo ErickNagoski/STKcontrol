@@ -6,13 +6,11 @@ import javafx.scene.control.TextField;
 import model.DAO.ProdutoDAO;
 
 import java.sql.SQLException;
+import Class.Produto;
 
-public class Produto {
+public class ProdutoController {
     @FXML
     private TextField txtFornecedor;
-
-    @FXML
-    private TextField txtCusto;
 
     @FXML
     private TextField txtIpi;
@@ -21,19 +19,22 @@ public class Produto {
     private TextField txtEndereco;
 
     @FXML
+    private TextField txtCusto;
+
+    @FXML
+    private Button btnCancel;
+
+    @FXML
     private TextField txtUm;
 
     @FXML
-    private TextField txtMultiplo;
+    private TextField txtQuantidade;
 
     @FXML
     private TextField txtCodigo;
 
     @FXML
     private TextField txtDescricao;
-
-    @FXML
-    private TextField txtQuantidade;
 
     @FXML
     private Button btnSubmit;
@@ -43,8 +44,25 @@ public class Produto {
 
     @FXML
     void Submit(ActionEvent event) throws SQLException {
+        Produto produto = new Produto(
+                txtCodigo.getText(),
+                txtDescricao.getText(),
+                Float.parseFloat(txtCusto.getText()),
+                Float.parseFloat(txtPreco.getText()),
+                Float.parseFloat(txtIpi.getText()),
+                txtFornecedor.getText(),
+                Float.parseFloat(txtQuantidade.getText()),
+                txtEndereco.getText(),
+                txtUm.getText());
+
         ProdutoDAO dao = new ProdutoDAO();
-        dao.adicionarNovoProduto(txtCodigo.getText(), txtDescricao.getText());
+        dao.adicionarNovoProduto(produto);
+    }
+
+
+    @FXML
+    void handleCancel(ActionEvent event) {
+
     }
 
     @FXML

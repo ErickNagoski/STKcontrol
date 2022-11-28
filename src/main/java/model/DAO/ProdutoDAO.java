@@ -1,11 +1,12 @@
 package model.DAO;
 
 import connection.ConnectionFactory;
-
+import Class.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ProdutoDAO {
     private static Connection con = null;
@@ -14,22 +15,21 @@ public class ProdutoDAO {
         this.con = ConnectionFactory.getConnection();
     }
 
-    public void adicionarNovoProduto(String cd, String descricao) throws SQLException {
-        String sql = "INSERT INTO produto(codigo, descricao, preco_custo, preco_venda, ipi, unidade_medida, multiplo, endereco, fornecedor_id) values (?,?,?,?,?,?,?,?,?);";
+    public void adicionarNovoProduto(Produto p) throws SQLException {
+        String sql = "INSERT INTO produto(codigo, descricao, preco_custo, preco_venda, ipi, unidade_medida, endereco, fornecedor_id) values (?,?,?,?,?,?,?,?);";
         PreparedStatement stmt = null;
 
         try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
 
-            stmt.setString(1, cd);
-            stmt.setString(2, descricao);
-            stmt.setString(3, String.valueOf(10));
-            stmt.setString(4, String.valueOf(26.20));
-            stmt.setString(5, String.valueOf(3));
-            stmt.setString(6, "Kg");
-            stmt.setString(7, String.valueOf(1));
-            stmt.setString(8, "1.2.1");
-            stmt.setString(9, "1");
+            stmt.setString(1, p.getCodigo());
+            stmt.setString(2, p.getDescricao());
+            stmt.setString(3, String.valueOf(p.getPreco_custo()));
+            stmt.setString(4, String.valueOf(p.getPreco_venda()));
+            stmt.setString(5, String.valueOf(p.getIpi()));
+            stmt.setString(6, p.getUnidade_media());
+            stmt.setString(7, String.valueOf(p.getEndereco()));
+            stmt.setString(8, p.getCodigo_fornecedor());
             stmt.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Erro " + ex);
@@ -82,8 +82,43 @@ public class ProdutoDAO {
 
     }
 
-    public void buscarTodosProdutos(){
+    public ArrayList<Produto> buscarTodosProdutos() {
+        String sql = "SELECT \n" +
+                "\t\tp.*, \n" +
+                "\t\tf.codigo as codigo_fornecedor, \n" +
+                "        e.quantidade as estoque \n" +
+                "\tFROM stkcontrol.produto p \n" +
+                "inner join fornecedor f \n" +
+                "\ton p.fornecedor_id = f.fornecedor_id\n" +
+                "inner join estoque e \n" +
+                "\ton p.produto_id = e.produto_id;";
 
+        try (PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+
+            ArrayList<Produto> produtos = new ArrayList<Produto>();
+            while (rs.next()) {
+                Produto p = new Produto(
+                        Integer.parseInt(rs.getString("produto_id")),
+                        rs.getString("codigo"),
+                        rs.getString("descricao"),
+                        Float.parseFloat(rs.getString("preco_custo")),
+                        Float.parseFloat(rs.getString("preco_venda")),
+                        Float.parseFloat(rs.getString("ipi")),
+                        rs.getString("codigo_fornecedor"),
+                        Float.parseFloat(rs.getString("estoque")),
+                        rs.getString("endereco"),
+                        rs.getString("unidade_medida")
+                );
+                produtos.add(p);
+
+            }
+            return produtos;
+
+        } catch (SQLException ex) {
+            System.err.println("Erro " + ex);
+        }
+        return null;
     }
 
 
