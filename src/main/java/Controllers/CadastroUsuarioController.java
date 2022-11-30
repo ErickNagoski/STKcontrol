@@ -1,5 +1,6 @@
 package Controllers;
 
+        import com.example.stkcontrol.Application;
         import javafx.event.ActionEvent;
         import javafx.fxml.FXML;
         import javafx.scene.control.TextField;
@@ -28,7 +29,7 @@ public class CadastroUsuarioController {
 
     @FXML
     void handleCancel(ActionEvent event) {
-
+        txtUser.getScene().getWindow().hide();
     }
 
 }

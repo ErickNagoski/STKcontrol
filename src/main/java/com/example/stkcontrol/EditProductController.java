@@ -77,7 +77,7 @@ public class EditProductController {
     void search(ActionEvent event) throws SQLException {
         ProdutoDAO dao = new ProdutoDAO();
         try {
-            dao.buscarProduto(txtCode.getText());
+            dao.buscarProdutoInserido(txtCode.getText());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

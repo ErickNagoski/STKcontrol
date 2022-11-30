@@ -1,8 +1,11 @@
 package Controllers;
 
+import com.example.stkcontrol.Application;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import Class.Produto;
@@ -10,32 +13,37 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.DAO.ProdutoDAO;
 
+import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+import Class.TableEstoque;
+import util.Excel;
 
-public class HomeController {
+public class HomeController implements Initializable {
     @FXML
-    private TableView<Produto> table;
+    private TableView<TableEstoque> table;
     @FXML
-    private TableColumn<Produto,String> colCodigo;
+    private TableColumn<TableEstoque,String> colCodigo;
 
     @FXML
     private Button btnEdit;
 
     @FXML
-    private TableColumn<Produto,String> colEndereco;
+    private TableColumn<TableEstoque,String> colEndereco;
 
     @FXML
-    private TableColumn<Produto,String> colDescricao;
+    private TableColumn<TableEstoque,String> colDescricao;
 
     @FXML
     private Button btnExportar;
 
     @FXML
-    private TableColumn<Produto,String> ColMovimento;
+    private TableColumn<TableEstoque,String> ColMovimento;
 
     @FXML
-    private TableColumn<Produto,String> colQuantidade;
+    private TableColumn<TableEstoque,String> colQuantidade;
 
     @FXML
     void handleEditar(ActionEvent event) {
@@ -49,9 +57,15 @@ public class HomeController {
 
     @FXML
     void handleCadastro(ActionEvent event) throws SQLException {
-        ProdutoDAO dao = new ProdutoDAO();
-        ArrayList<Produto> produtos = dao.buscarTodosProdutos();
-        System.out.println(produtos.size());
+        Application app = new Application();
+        try {
+            app.OpenScreen("Produto");
+        } catch (IOException e) {
+            //log
+            throw new RuntimeException(e);
+
+        }
+
        // colCodigo.setCellValueFactory(new PropertyValueFactory<Produto,String>("codigo"));
         //colDescricao.setCellValueFactory(new PropertyValueFactory<Produto,String>("codigo"));
        // colEndereco.setCellValueFactory(new PropertyValueFactory<Produto,String>("codigo"));
@@ -62,8 +76,29 @@ public class HomeController {
     }
 
     @FXML
-    void exportTable(ActionEvent event) {
+    void exportTable(ActionEvent event) throws SQLException {
+        Excel ex = new Excel();
+        ex.geraExcel();
+    }
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        ProdutoDAO dao = null;
+        try {
+            dao = new ProdutoDAO();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ObservableList<TableEstoque> produtos = dao.carregaProdutos();
+        for (int i = 0; i < produtos.size(); i++) {
+            System.out.println(produtos.get(i));
+        }
+        //colCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        colCodigo.setCellValueFactory(new PropertyValueFactory<TableEstoque,String>("codigo"));
+       // colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        //colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+        //colQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+       table.setItems(produtos);
     }
 
 }

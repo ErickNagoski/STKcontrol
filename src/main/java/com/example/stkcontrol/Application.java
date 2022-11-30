@@ -17,47 +17,29 @@ public class Application extends javafx.application.Application {
         stage.show();
     }
 
-
-//    public void Home() throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("Home.fxml"));
-//        Stage stage = new Stage();
-//        Scene scene = new Scene(fxmlLoader.load());
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-
-//    public void EditProduct() throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("EditProduct.fxml"));
-//        Stage stage = new Stage();
-//        Scene scene = new Scene(fxmlLoader.load());
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-// public void CastroProduct() throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("Produto.fxml"));
-//        Stage stage = new Stage();
-//        Scene scene = new Scene(fxmlLoader.load());
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-
     public static void main(String[] args) {
         launch();
     }
 
-//    public void CadastroUsuario() throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("CadastroUsuario.fxml"));
-//        Stage stage = new Stage();
-//        Scene scene = new Scene(fxmlLoader.load());
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-
     public void OpenScreen(String screenName)throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(screenName+".fxml"));
         Stage stage = new Stage();
+        //setStage(stage);
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void closeCurrentWindow(){
+        this.stage.close();
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+        setStage(null);
     }
 }

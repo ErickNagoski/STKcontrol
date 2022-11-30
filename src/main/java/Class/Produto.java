@@ -23,6 +23,17 @@ public class Produto  {
 
     private String unidade_media;
 
+    public Produto(int produto_id, String codigo, String descricao, float preco_custo, float preco_venda, float ipi, String codigo_fornecedor, String unidade_media) {
+        this.produto_id = produto_id;
+        this.codigo = codigo;
+        this.descricao = descricao;
+        this.preco_custo = preco_custo;
+        this.preco_venda = preco_venda;
+        this.ipi = ipi;
+        this.codigo_fornecedor = codigo_fornecedor;
+        this.unidade_media = unidade_media;
+    }
+
     public Produto(int produto_id, String codigo, String descricao, float preco_custo, float preco_venda, float ipi, String codigo_fornecedor, float estoque, String endereco, String unidade_media) {
         this.produto_id = produto_id;
         this.codigo = codigo;
