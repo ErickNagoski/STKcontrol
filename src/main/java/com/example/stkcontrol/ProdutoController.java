@@ -7,6 +7,7 @@ import model.DAO.ProdutoDAO;
 
 import java.sql.SQLException;
 import Class.Produto;
+import util.AlertDialog;
 
 public class ProdutoController {
     @FXML
@@ -44,8 +45,10 @@ public class ProdutoController {
 
     @FXML
     void Submit(ActionEvent event) throws SQLException {
+        String codigo =txtCodigo.getText();
+
         Produto produto = new Produto(
-                txtCodigo.getText(),
+                codigo,
                 txtDescricao.getText(),
                 Float.parseFloat(txtCusto.getText()),
                 Float.parseFloat(txtPreco.getText()),
@@ -56,7 +59,20 @@ public class ProdutoController {
                 txtUm.getText());
 
         ProdutoDAO dao = new ProdutoDAO();
-        dao.adicionarNovoProduto(produto);
+
+        if(dao.buscarProdutoInserido(codigo) == null){
+            try {
+                dao.adicionarNovoProduto(produto);
+                AlertDialog.SimpleDialog("Sucesso", "Produto Cadastrado");
+                txtCodigo.getScene().getWindow().hide();
+            } catch (SQLException e) {
+                AlertDialog.SimpleDialog("Erro", "Não foi possivel cadastrar o produto.");
+                //log não foi possivel criar produto
+                throw new RuntimeException(e);
+            }
+        }else{
+            AlertDialog.SimpleDialog("Erro", "Já existem um produto com o código "+codigo+" cadastrado!");
+        }
     }
 
 
