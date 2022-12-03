@@ -49,26 +49,36 @@ public class UserDAO {
             //log
             System.err.println("Erro " + ex);
             return false;
-        } finally {
-            ConnectionFactory.closeConnection(con, stmt);
         }
     }
 
     public boolean verificaEmail(String email) throws SQLException {
-        String sql = "SELECT email FROM tbCliente";
-
+        String sql = "SELECT email FROM usuario where email = '"+email+"';";
+        boolean exists = false;
         try (PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
-
             while (rs.next()) {
-                if (rs.getString("email").equals(email)) {
-                    return true;
-                }
+                exists = true;
             }
 
         } catch (SQLException ex) {
             System.err.println("Erro " + ex);
         }
-        return false;
+        return exists;
+    }
+
+    public boolean verificaUsuario(String username) throws SQLException {
+        String sql = "SELECT username FROM usuario where username = '"+username+"';";
+        boolean exists = false;
+        try (PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                exists = true;
+            }
+
+        } catch (SQLException ex) {
+            System.err.println("Erro " + ex);
+        }
+        return exists;
     }
 }

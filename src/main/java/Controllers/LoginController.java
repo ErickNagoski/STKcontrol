@@ -17,12 +17,12 @@ public class LoginController {
     @FXML
     private PasswordField txtPassword;
 
-
     @FXML
     void handleCadastro(ActionEvent event) {
         Application app = new Application();
         try {
             app.OpenScreen("CadastroUsuario");
+            txtUser.getScene().getWindow().hide();
         } catch (IOException e) {
             //log
             throw new RuntimeException(e);
