@@ -19,7 +19,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import Class.TableEstoque;
-import util.Excel;
 
 public class HomeController implements Initializable {
     @FXML
@@ -77,8 +76,7 @@ public class HomeController implements Initializable {
 
     @FXML
     void exportTable(ActionEvent event) throws SQLException {
-        Excel ex = new Excel();
-        ex.geraExcel();
+
     }
 
     @Override
@@ -94,7 +92,7 @@ public class HomeController implements Initializable {
             System.out.println(produtos.get(i));
         }
         //colCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-        colCodigo.setCellValueFactory(new PropertyValueFactory<TableEstoque,String>("codigo"));
+        //colCodigo.setCellValueFactory(new PropertyValueFactory<TableEstoque,String>("codigo"));
        // colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         //colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
         //colQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
