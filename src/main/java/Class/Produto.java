@@ -138,4 +138,20 @@ public class Produto  {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "produto_id=" + produto_id +
+                ", codigo='" + codigo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", preco_custo=" + preco_custo +
+                ", preco_venda=" + preco_venda +
+                ", ipi=" + ipi +
+                ", codigo_fornecedor='" + codigo_fornecedor + '\'' +
+                ", estoque=" + estoque +
+                ", endereco='" + endereco + '\'' +
+                ", unidade_media='" + unidade_media + '\'' +
+                '}';
+    }
 }

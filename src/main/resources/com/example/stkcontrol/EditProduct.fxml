@@ -8,21 +8,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="492.0" prefWidth="406.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stkcontrol.EditProductController">
+<AnchorPane prefHeight="492.0" prefWidth="406.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditProductController">
    <children>
-      <Button fx:id="btnSearch" layoutX="193.0" layoutY="99.0" mnemonicParsing="false" onAction="#search" text="Buscar" />
-      <Pane layoutX="16.0" layoutY="131.0" prefHeight="403.0" prefWidth="375.0">
+      <Button fx:id="btnSearch" layoutX="193.0" layoutY="99.0" mnemonicParsing="false" onAction="#handleSearch" text="Buscar" />
+      <Pane fx:id="pane" layoutX="16.0" layoutY="131.0" prefHeight="403.0" prefWidth="375.0" visible="false">
          <children>
             <TextField fx:id="txtDescricao" layoutX="14.0" layoutY="34.0" prefHeight="25.0" prefWidth="347.0" promptText="Nova Descriçao" />
             <TextField fx:id="txtFornecedor" layoutX="15.0" layoutY="161.0" promptText="Novo Fornecedor" />
             <Button fx:id="btnSubmit" layoutX="156.0" layoutY="355.0" mnemonicParsing="false" onAction="#submit" text="Atualizar" />
             <Text fx:id="lblDescricao" layoutX="12.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descricao: " />
-            <Text fx:id="lblPreco" layoutX="13.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preço atual: " />
+            <Text fx:id="lblPreco" layoutX="13.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preço de venda: " />
             <Text fx:id="lblIpi" layoutX="216.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\% IPI: " />
             <TextField fx:id="txtPreco" layoutX="15.0" layoutY="96.0" promptText="Novo Preço" />
             <TextField fx:id="txtIpi" layoutX="214.0" layoutY="93.0" promptText="Nova % IPI" />
-            <Text fx:id="lblFornecedor" layoutX="17.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fornecedor atual:" />
-            <Text fx:id="lblCusto" layoutX="216.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Custo Atual: " />
+            <Text fx:id="lblFornecedor" layoutX="17.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fornecedor:" />
+            <Text fx:id="lblCusto" layoutX="216.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Custo: " />
             <TextField fx:id="txtCusto" layoutX="215.0" layoutY="161.0" promptText="Novo custo" />
             <Text fx:id="lblEstoque" layoutX="16.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantidade em estoque:" />
             <TextField fx:id="txtEstoque" layoutX="17.0" layoutY="218.0" promptText="Nova quantidade" />

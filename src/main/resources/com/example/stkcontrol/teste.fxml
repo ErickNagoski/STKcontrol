@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stkcontrol.Teste">
+   <children>
+      <TableView fx:id="table" layoutX="61.0" layoutY="48.0" prefHeight="298.0" prefWidth="455.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="75.0" text="name" />
+          <TableColumn fx:id="colAge" prefWidth="75.0" text="age" />
+            <TableColumn fx:id="animal" prefWidth="75.0" text="animal" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

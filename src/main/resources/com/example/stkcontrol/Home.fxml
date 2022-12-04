@@ -1,49 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
    <children>
-      <Button fx:id="btnEdit" layoutX="270.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleEditar" prefHeight="26.0" prefWidth="100.0" text="Editar">
+      <Button fx:id="btnEdit" layoutX="164.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleEditar" prefHeight="26.0" prefWidth="100.0" text="Editar">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="150.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleVenda" prefHeight="26.0" prefWidth="100.0" text="Venda">
+      <Button layoutX="713.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleVenda" prefHeight="26.0" prefWidth="138.0" text="Simular Venda">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-      <Text fill="#13dd0f" layoutX="8.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bem-Vindo">
+      <Text fill="#13dd0f" layoutX="14.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STKControl">
          <font>
             <Font name="Arial Bold" size="39.0" />
          </font>
       </Text>
-      <Button layoutX="29.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleCadastro" prefHeight="26.0" prefWidth="100.0" text="Cadastrar">
+      <Button layoutX="50.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleCadastro" prefHeight="26.0" prefWidth="100.0" text="Cadastrar">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Button>
-      <ScrollPane layoutX="29.0" layoutY="82.0" prefHeight="442.0" prefWidth="844.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <TableView fx:id="table" layoutX="10.0" layoutY="17.0" prefHeight="433.0" prefWidth="844.0">
-                     <columns>
-                        <TableColumn fx:id="colCodigo1" prefWidth="121.0" text="Código" />
-                        <TableColumn fx:id="colDescricao1" prefWidth="293.0" text="Descrição" />
-                        <TableColumn fx:id="colQuantidade1" minWidth="0.0" prefWidth="157.0" text="Quantidade" />
-                        <TableColumn fx:id="colEndereco1" prefWidth="131.0" text="Endereço" />
-                        <TableColumn fx:id="ColMovimento1" prefWidth="140.0" text="último movimento" />
-                     </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
-      <Button fx:id="btnExportar" layoutX="775.0" layoutY="546.0" mnemonicParsing="false" onAction="#exportTable" text="Exportar Dados" />
+      <Button fx:id="btnExportar" layoutX="492.0" layoutY="547.0" mnemonicParsing="false" onAction="#exportTable" text="Exportar Dados" />
+      <TableView fx:id="table" layoutX="50.0" layoutY="77.0" prefHeight="439.0" prefWidth="801.0">
+        <columns>
+          <TableColumn fx:id="codigo" prefWidth="100.0" text="Código" />
+            <TableColumn fx:id="descricao" prefWidth="104.0" text="Descricao" />
+            <TableColumn fx:id="quantidade" prefWidth="87.0" text="Quantidade" />
+          <TableColumn fx:id="endereco" prefWidth="99.0" text="Endereço" />
+        </columns>
+      </TableView>
+      <Button layoutX="277.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleRemover" prefHeight="26.0" prefWidth="100.0" text="Remover">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
