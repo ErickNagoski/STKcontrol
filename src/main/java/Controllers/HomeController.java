@@ -1,23 +1,23 @@
 package Controllers;
 
+import Class.ErrorLog;
 import com.example.stkcontrol.Application;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.DAO.ProdutoDAO;
+import util.Excel;
+import util.Logs;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-import Class.ErrorLog;
-import util.Logs;
 
 public class HomeController implements Initializable {
     Application app = new Application();
@@ -86,7 +86,8 @@ public class HomeController implements Initializable {
 
     @FXML
     void exportTable(ActionEvent event) throws SQLException {
-
+        ArrayList<ProductTable> produtos = dao.buscaProdutos();
+        Excel.GeraExcel(produtos);
     }
     @FXML
     void handleRemover(ActionEvent event) {

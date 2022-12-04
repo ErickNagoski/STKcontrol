@@ -1,12 +1,15 @@
 package model.DAO;
 
+import Class.Produto;
 import Controllers.ProductTable;
 import connection.ConnectionFactory;
-import Class.Produto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ProdutoDAO {
@@ -175,16 +178,7 @@ public class ProdutoDAO {
 
     public ObservableList<ProductTable> carregaProdutos() {
         ObservableList<ProductTable> produtos = FXCollections.observableArrayList();
-        String sql = "SELECT \n" +
-                "\t\tp.*, \n" +
-                "\t\te.endereco, \n" +
-                "\t\tf.codigo as codigo_fornecedor, \n" +
-                "        e.quantidade as estoque \n" +
-                "\tFROM stkcontrol.produto p \n" +
-                "inner join fornecedor f \n" +
-                "\ton p.fornecedor_id = f.fornecedor_id\n" +
-                "inner join estoque e \n" +
-                "\ton p.produto_id = e.produto_id;";
+        String sql = "CALL busca_produtos()";
 
         try (PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
@@ -193,8 +187,40 @@ public class ProdutoDAO {
                         rs.getString("codigo"),
                         rs.getString("descricao"),
                         Double.parseDouble(rs.getString("estoque")),
-                        rs.getString("endereco")
+                        rs.getString("endereco"),
+                        Double.parseDouble(rs.getString("preco_venda")),
+                        Double.parseDouble(rs.getString("ipi")),
+                        Double.parseDouble(rs.getString("preco_custo")),
+                        rs.getString("unidade_medida"),
+                        rs.getString("codigo_fornecedor"),
+                        rs.getString("fornecedor")
+                );
+                produtos.add(data);
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erro " + ex);
+        }
+        return produtos;
+    }
 
+    public ArrayList<ProductTable> buscaProdutos() {
+        ArrayList<ProductTable> produtos = new ArrayList<ProductTable>();
+        String sql = "CALL busca_produtos()";
+
+        try (PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                ProductTable data = new ProductTable(
+                        rs.getString("codigo"),
+                        rs.getString("descricao"),
+                        Double.parseDouble(rs.getString("estoque")),
+                        rs.getString("endereco"),
+                        Double.parseDouble(rs.getString("preco_venda")),
+                        Double.parseDouble(rs.getString("ipi")),
+                        Double.parseDouble(rs.getString("preco_custo")),
+                        rs.getString("unidade_medida"),
+                        rs.getString("codigo_fornecedor"),
+                        rs.getString("fornecedor")
                 );
                 produtos.add(data);
             }

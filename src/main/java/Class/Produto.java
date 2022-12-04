@@ -4,8 +4,6 @@
  */
 package Class;
 
-import com.example.stkcontrol.Application;
-
 /**
  *
  * @author Vitória

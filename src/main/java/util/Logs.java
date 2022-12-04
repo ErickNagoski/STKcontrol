@@ -1,11 +1,11 @@
 package util;
 
+import Class.ErrorLog;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-
-import Class.ErrorLog;
 
 public class Logs {
     private static File file;

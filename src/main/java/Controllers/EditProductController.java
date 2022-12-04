@@ -1,5 +1,6 @@
 package Controllers;
 
+import Class.Produto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import model.DAO.ProdutoDAO;
-import Class.Produto;
 import util.AlertDialog;
 
 import java.sql.SQLException;

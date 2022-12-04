@@ -1,15 +1,16 @@
 package Controllers;
-        import com.example.stkcontrol.Application;
-        import javafx.event.ActionEvent;
-        import javafx.fxml.FXML;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.TextField;
-        import Class.Usuario;
-        import model.DAO.UserDAO;
-        import util.AlertDialog;
 
-        import java.io.IOException;
-        import java.sql.SQLException;
+import Class.Usuario;
+import com.example.stkcontrol.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import model.DAO.UserDAO;
+import util.AlertDialog;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class CadastroUsuarioController {
     private static UserDAO dao;

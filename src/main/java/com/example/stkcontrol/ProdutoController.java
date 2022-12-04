@@ -1,13 +1,14 @@
 package com.example.stkcontrol;
+
+import Class.Produto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.DAO.ProdutoDAO;
+import util.AlertDialog;
 
 import java.sql.SQLException;
-import Class.Produto;
-import util.AlertDialog;
 
 public class ProdutoController {
     @FXML

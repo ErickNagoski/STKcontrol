@@ -1,12 +1,12 @@
 package model.DAO;
 
+import Class.Usuario;
 import connection.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import Class.Usuario;
 
 public class UserDAO {
     private static Connection con = null;

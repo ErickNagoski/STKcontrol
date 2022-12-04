@@ -5,8 +5,6 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 
-import static connection.ConnectionFactory.closeConnection;
-
 public class HelloController {
     @FXML
     private Label welcomeText;

@@ -7,6 +7,7 @@ module com.example.stkcontrol {
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires org.apache.poi.ooxml;
 
     opens com.example.stkcontrol to javafx.fxml;
     exports com.example.stkcontrol;
