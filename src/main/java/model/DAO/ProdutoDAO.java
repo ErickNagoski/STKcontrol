@@ -193,7 +193,8 @@ public class ProdutoDAO {
                         Double.parseDouble(rs.getString("preco_custo")),
                         rs.getString("unidade_medida"),
                         rs.getString("codigo_fornecedor"),
-                        rs.getString("fornecedor")
+                        rs.getString("fornecedor"),
+                        "10/10/2022"
                 );
                 produtos.add(data);
             }
@@ -220,7 +221,8 @@ public class ProdutoDAO {
                         Double.parseDouble(rs.getString("preco_custo")),
                         rs.getString("unidade_medida"),
                         rs.getString("codigo_fornecedor"),
-                        rs.getString("fornecedor")
+                        rs.getString("fornecedor"),
+                        "10/10/2022"
                 );
                 produtos.add(data);
             }

@@ -3,14 +3,19 @@ package Controllers;
 import Class.Produto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.DAO.ProdutoDAO;
 import util.AlertDialog;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class EditProductController {
 
@@ -73,37 +78,6 @@ public class EditProductController {
 
     @FXML
     private Pane pane;
-
-    @FXML
-    void search(ActionEvent event) throws SQLException {
-        String codigo = txtCode.getText();
-        System.out.println(codigo);
-        ProdutoDAO dao = new ProdutoDAO();
-
-        Produto p = null;
-        try {
-            System.out.println("aqui");
-            p = dao.buscarProduto(codigo);
-            System.out.println(p);
-        } catch (SQLException e) {
-            //log não foi possivel buscar produto
-            throw new RuntimeException(e);
-        }
-        System.out.println("produto"+p);
-        System.out.println(p.getCodigo());
-
-        if (p != null){
-            txtCusto.setText(String.valueOf(p.getPreco_custo()));
-            txtDescricao.setText(p.getDescricao());
-            txtEndereco.setText(p.getEndereco());
-            txtEstoque.setText(String.valueOf(p.getEstoque()));
-            txtIpi.setText(String.valueOf(p.getIpi()));
-            txtFornecedor.setText(p.getCodigo_fornecedor());
-            txtPreco.setText(String.valueOf(p.getPreco_venda()));
-            txtUm.setText(p.getUnidade_media());
-        }
-
-    }
 
     @FXML
     void handleSearch(ActionEvent event) throws SQLException {

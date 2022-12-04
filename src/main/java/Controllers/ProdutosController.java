@@ -30,12 +30,6 @@ public class ProdutosController implements Initializable {
     @FXML
     private TableColumn<ProductTable, String> descricao;
 
-    ObservableList<ProductTable> list = FXCollections.observableArrayList(
-            new ProductTable("a","a1",2.2,"123"),
-            new ProductTable("b","a1",2.2,"123"),
-            new ProductTable("c","a1",2.2,"123")
-    );
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ProdutoDAO dao = null;

@@ -11,15 +11,19 @@ public class ProductTable {
     private String unidadeMedida;
     private String codigoFornecedor;
     private String fornecedor;
+    private String movimento;
 
-    public ProductTable(String codigo, String descricao, Double quantidade, String endereco) {
+    public ProductTable(String codigo, String descricao, Double quantidade, String endereco, String unidadeMedida, String fornecedor, String movimento) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.quantidade = quantidade;
         this.endereco = endereco;
+        this.unidadeMedida = unidadeMedida;
+        this.fornecedor = fornecedor;
+        this.movimento = movimento;
     }
 
-    public ProductTable(String codigo, String descricao, Double quantidade, String endereco, Double preco_venda, Double ipi, Double pre_custo, String unidadeMedida, String codigoFornecedor, String fornecedor) {
+    public ProductTable(String codigo, String descricao, Double quantidade, String endereco, Double preco_venda, Double ipi, Double pre_custo, String unidadeMedida, String codigoFornecedor, String fornecedor, String movimento) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.quantidade = quantidade;
@@ -30,6 +34,7 @@ public class ProductTable {
         this.unidadeMedida = unidadeMedida;
         this.codigoFornecedor = codigoFornecedor;
         this.fornecedor = fornecedor;
+        this.movimento = movimento;
     }
 
     public String getCodigo() {
@@ -70,5 +75,9 @@ public class ProductTable {
 
     public String getFornecedor() {
         return fornecedor;
+    }
+
+    public String getMovimento() {
+        return movimento;
     }
 }

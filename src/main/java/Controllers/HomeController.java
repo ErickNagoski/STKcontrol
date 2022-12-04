@@ -29,6 +29,12 @@ public class HomeController implements Initializable {
 
     @FXML
     private TableColumn<ProductTable, String> endereco;
+    @FXML
+    private TableColumn<ProductTable, String> unidMedida;
+    @FXML
+    private TableColumn<ProductTable, String> fornecedor;
+    @FXML
+    private TableColumn<ProductTable, String> movimento;
 
     @FXML
     private TableColumn<ProductTable, Double> quantidade;
@@ -45,16 +51,12 @@ public class HomeController implements Initializable {
 
     @FXML
     void handleEditar(ActionEvent event) {
-    int selectedID = table.getSelectionModel().getSelectedIndex();
-        System.out.println(selectedID);
-        System.out.println(produtos.get(selectedID).getDescricao());
-
-        //        try {
-//            app.OpenScreen("EditProduct");
-//        } catch (IOException e) {
-//            //log
-//            throw new RuntimeException(e);
-//        }
+        try {
+            app.OpenScreen("EditProduct");
+        } catch (IOException e) {
+            //log
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -116,9 +118,16 @@ public class HomeController implements Initializable {
         descricao.setCellValueFactory(new PropertyValueFactory<ProductTable,String>("descricao"));
         endereco.setCellValueFactory(new PropertyValueFactory<ProductTable,String>("endereco"));
         quantidade.setCellValueFactory(new PropertyValueFactory<ProductTable,Double>("quantidade"));
-
+        unidMedida.setCellValueFactory(new PropertyValueFactory<ProductTable,String>("unidadeMedida"));
+        fornecedor.setCellValueFactory(new PropertyValueFactory<ProductTable,String>("fornecedor"));
+        movimento.setCellValueFactory(new PropertyValueFactory<ProductTable,String>("movimento"));
         table.setItems(produtos);
     }
+    @FXML
+    void handleExit(ActionEvent event) {}
+    @FXML
+    void handleUpdate(ActionEvent event) {}
+
 
 }
 
