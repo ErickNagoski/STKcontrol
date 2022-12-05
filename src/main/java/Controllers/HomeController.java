@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -102,12 +103,16 @@ public class HomeController implements Initializable {
     void handleRemover(ActionEvent event) throws IOException {
         int selectedId = table.getSelectionModel().getSelectedIndex();
         String productCode = produtos.get(selectedId).getCodigo();
+        if(productCode.length()>0){
         try {
             dao.removerProduto(productCode);
             produtos.remove(selectedId);
         } catch (SQLException e) {
             Logs.writeLog(new ErrorLog("Erro ao remover produto"));
             throw new RuntimeException(e);
+        }
+        }else{
+            AlertDialog.SimpleDialog("Aviso", "Nenhum produto selecionado");
         }
     }
 

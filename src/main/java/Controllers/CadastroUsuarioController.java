@@ -86,6 +86,7 @@ public class CadastroUsuarioController {
         if (login){
             try {
                 app.OpenScreen("Home");
+                txtUser.getScene().getWindow().hide();
             } catch (IOException e) {
                 Logs.writeLog(new ErrorLog("log não conseguiu abrir tela"));
                 throw new RuntimeException(e);

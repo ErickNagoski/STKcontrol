@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
+
 <AnchorPane prefHeight="492.0" prefWidth="406.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditProductController">
    <children>
       <Button fx:id="btnSearch" layoutX="193.0" layoutY="99.0" mnemonicParsing="false" onAction="#handleSearch" text="Buscar" />
@@ -29,7 +32,7 @@
          </children>
       </Pane>
       <TextField fx:id="txtCode" layoutX="31.0" layoutY="99.0" promptText="Código" />
-      <Text layoutX="29.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 900; -fx-font-size: 26;" text="Ediçao de Produto">
+      <Text fill="#13dd0f" layoutX="29.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 900; -fx-font-size: 26;" text="Ediçao de Produto">
          <font>
             <Font size="24.0" />
          </font>

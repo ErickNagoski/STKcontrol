@@ -62,7 +62,6 @@ public class ProdutoDAO {
     }
 
     public Produto buscarProduto(String codigo) throws SQLException {
-        System.out.println("chamou");
         String sql = "CALL Selecionar_Produtos('"+codigo+"');";
 
         try (PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql)) {
@@ -86,7 +85,6 @@ public class ProdutoDAO {
                     );
                 return p;
             }
-
         } catch (SQLException ex) {
             System.err.println("Erro " + ex);
         }

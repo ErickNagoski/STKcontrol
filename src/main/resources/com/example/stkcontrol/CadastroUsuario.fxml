@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
+
 <AnchorPane prefHeight="346.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastroUsuarioController">
    <children>
       <Pane prefHeight="383.0" prefWidth="500.0">
@@ -38,7 +41,7 @@
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Button>
-            <Text layoutX="178.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800; -fx-font-size: 32;" text="Cadastro">
+            <Text fill="#13dd0f" layoutX="178.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 800; -fx-font-size: 32;" text="Cadastro">
                <font>
                   <Font size="39.0" />
                </font>
