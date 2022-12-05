@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.DAO.ProdutoDAO;
+import util.AlertDialog;
 import util.Excel;
 import util.Logs;
 
@@ -18,7 +19,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+/**
+ *
+ * @author Erick Nagoski
+ */
 public class HomeController implements Initializable {
     Application app = new Application();
     ProdutoDAO    dao = new ProdutoDAO();
@@ -54,20 +58,23 @@ public class HomeController implements Initializable {
         try {
             app.OpenScreen("EditProduct");
         } catch (IOException e) {
-            //log
             throw new RuntimeException(e);
         }
     }
 
     @FXML
     void handleVenda(ActionEvent event) {
-        try {
-            app.OpenScreen("Produtos");
-            app.OpenScreen("Teste");
+        int selectedId = table.getSelectionModel().getSelectedIndex();
+        String productCode = produtos.get(selectedId).getCodigo();
+        double quantidade = produtos.get(selectedId).getQuantidade();
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if(quantidade>0){
+        dao.simulaVenda(productCode,quantidade/3);
+        carregaTabela();
+        }else{
+            AlertDialog.SimpleDialog("Sem estoque", "Produto indisponivel.");
         }
+
     }
 
     @FXML
@@ -92,27 +99,20 @@ public class HomeController implements Initializable {
         Excel.GeraExcel(produtos);
     }
     @FXML
-    void handleRemover(ActionEvent event) {
+    void handleRemover(ActionEvent event) throws IOException {
         int selectedId = table.getSelectionModel().getSelectedIndex();
         String productCode = produtos.get(selectedId).getCodigo();
         try {
             dao.removerProduto(productCode);
             produtos.remove(selectedId);
         } catch (SQLException e) {
-            //log remover produto
+            Logs.writeLog(new ErrorLog("Erro ao remover produto"));
             throw new RuntimeException(e);
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ProdutoDAO dao = null;
-        try {
-            dao = new ProdutoDAO();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-         produtos = dao.carregaProdutos();
 
         codigo.setCellValueFactory(new PropertyValueFactory<ProductTable,String>("codigo"));
         descricao.setCellValueFactory(new PropertyValueFactory<ProductTable,String>("descricao"));
@@ -121,12 +121,23 @@ public class HomeController implements Initializable {
         unidMedida.setCellValueFactory(new PropertyValueFactory<ProductTable,String>("unidadeMedida"));
         fornecedor.setCellValueFactory(new PropertyValueFactory<ProductTable,String>("fornecedor"));
         movimento.setCellValueFactory(new PropertyValueFactory<ProductTable,String>("movimento"));
-        table.setItems(produtos);
+
+        carregaTabela();
     }
     @FXML
-    void handleExit(ActionEvent event) {}
+    void handleExit(ActionEvent event) throws IOException {
+        table.getScene().getWindow().hide();
+        app.OpenScreen("Login");
+    }
     @FXML
-    void handleUpdate(ActionEvent event) {}
+    void handleUpdate(ActionEvent event) {
+        carregaTabela();
+    }
+
+    private void carregaTabela(){
+        produtos = dao.carregaProdutos();
+        table.setItems(produtos);
+    }
 
 
 }

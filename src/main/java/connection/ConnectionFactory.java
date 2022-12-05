@@ -4,7 +4,7 @@ import java.sql.*;
 
 /**
  *
- * @author Erick
+ * @author Erick Nagoski
  */
 public class ConnectionFactory {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";

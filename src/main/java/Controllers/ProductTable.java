@@ -1,5 +1,8 @@
 package Controllers;
-
+/**
+ *
+ * @author Erick Nagoski
+ */
 public class ProductTable {
     private String codigo;
     private String descricao;

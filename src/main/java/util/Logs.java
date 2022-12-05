@@ -8,11 +8,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 public class Logs {
-    private static File file;
-
-    public Logs() {
-        this.file = new File("logs.txt");
-    }
+    private static File file= new File("logs.txt");
 
     public static void writeLog(ErrorLog log) throws IOException {
         if(!file.exists()){

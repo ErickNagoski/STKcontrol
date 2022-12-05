@@ -1,7 +1,10 @@
 package Class;
 
 import java.io.Serializable;
-
+/**
+ *
+ * @author Vitória
+ */
 public class ErrorLog implements Serializable {
     private String message;
 

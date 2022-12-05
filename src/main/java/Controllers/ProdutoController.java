@@ -1,4 +1,4 @@
-package com.example.stkcontrol;
+package Controllers;
 
 import Class.Produto;
 import javafx.event.ActionEvent;
@@ -7,9 +7,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.DAO.ProdutoDAO;
 import util.AlertDialog;
+import util.Logs;
+import Class.ErrorLog;
 
+import java.io.IOException;
 import java.sql.SQLException;
-
+/**
+ *
+ * @author Erick Nagoski
+ */
 public class ProdutoController {
     @FXML
     private TextField txtFornecedor;
@@ -45,9 +51,8 @@ public class ProdutoController {
     private TextField txtPreco;
 
     @FXML
-    void Submit(ActionEvent event) throws SQLException {
+    void Submit(ActionEvent event) throws SQLException, IOException {
         String codigo =txtCodigo.getText();
-
         Produto produto = new Produto(
                 codigo,
                 txtDescricao.getText(),
@@ -66,9 +71,10 @@ public class ProdutoController {
                 dao.adicionarNovoProduto(produto);
                 AlertDialog.SimpleDialog("Sucesso", "Produto Cadastrado");
                 txtCodigo.getScene().getWindow().hide();
+
             } catch (SQLException e) {
                 AlertDialog.SimpleDialog("Erro", "Não foi possivel cadastrar o produto.");
-                //log não foi possivel criar produto
+                Logs.writeLog(new ErrorLog("Não foi possivel cadastrar o produto."));
                 throw new RuntimeException(e);
             }
         }else{

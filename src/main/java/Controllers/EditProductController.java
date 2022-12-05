@@ -12,11 +12,16 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.DAO.ProdutoDAO;
 import util.AlertDialog;
+import util.Logs;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
-
+import Class.ErrorLog;
+/**
+ *
+ * @author Erick Nagoski
+ */
 public class EditProductController {
 
     @FXML
@@ -80,18 +85,16 @@ public class EditProductController {
     private Pane pane;
 
     @FXML
-    void handleSearch(ActionEvent event) throws SQLException {
+    void handleSearch(ActionEvent event) throws SQLException, IOException {
         String codigo = txtCode.getText();
-        System.out.println(codigo);
         ProdutoDAO dao = new ProdutoDAO();
 
         Produto p = null;
         try {
-            System.out.println("aqui");
             p = dao.buscarProduto(codigo);
-            System.out.println(p);
         } catch (SQLException e) {
-            //log não foi possivel buscar produto
+            Logs.writeLog(new ErrorLog("Não foi possivel buscar o produto"));
+
             throw new RuntimeException(e);
         }
 
@@ -105,6 +108,8 @@ public class EditProductController {
             txtFornecedor.setText(p.getCodigo_fornecedor());
             txtPreco.setText(String.valueOf(p.getPreco_venda()));
             txtUm.setText(p.getUnidade_media());
+        }else{
+            AlertDialog.SimpleDialog("","Nenhum produto encontrado!");
         }
     }
     @FXML

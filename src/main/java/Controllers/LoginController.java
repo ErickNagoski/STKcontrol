@@ -9,7 +9,14 @@ import model.DAO.UserDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
+import Class.ErrorLog;
+import org.apache.poi.ss.formula.functions.Log;
+import util.AlertDialog;
+import util.Logs;
+/**
+ *
+ * @author Vitória
+ */
 public class LoginController {
     @FXML
     private TextField txtUser;
@@ -18,36 +25,36 @@ public class LoginController {
     private PasswordField txtPassword;
 
     @FXML
-    void handleCadastro(ActionEvent event) {
+    void handleCadastro(ActionEvent event) throws IOException {
         Application app = new Application();
         try {
             app.OpenScreen("CadastroUsuario");
             txtUser.getScene().getWindow().hide();
         } catch (IOException e) {
-            //log
+            Logs.writeLog(new ErrorLog("Erro cadastrar usuário"));
             throw new RuntimeException(e);
         }
     }
 
     @FXML
-    void handleLogin(ActionEvent event) throws SQLException {
+    void handleLogin(ActionEvent event) throws SQLException, IOException {
         Application app = new Application();
         String user = txtUser.getText();
         String password = txtPassword.getText();
         UserDAO dao = new UserDAO();
         boolean login = dao.login(user, password);
         if(login){
-            System.out.println("Correto");
+            ErrorLog log = new ErrorLog("Usuário "+ user+" Logou.");
+            Logs.writeLog(log);
             try {
                 app.OpenScreen("Home");
+                txtUser.getScene().getWindow().hide();
             } catch (IOException e) {
-                //log
+                Logs.writeLog(new ErrorLog("Erro de login"));
                 throw new RuntimeException(e);
-
             }
         }else{
-            System.out.println("Errado");
-
+            AlertDialog.SimpleDialog("Incorreto", "Usuário ou senha errado!");
         }
     }
 

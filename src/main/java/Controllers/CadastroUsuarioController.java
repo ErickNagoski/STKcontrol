@@ -8,10 +8,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.DAO.UserDAO;
 import util.AlertDialog;
+import util.Logs;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
+import Class.ErrorLog;
+/**
+ *
+ * @author Erick Nagoski
+ */
 public class CadastroUsuarioController {
     private static UserDAO dao;
     private static Application app;
@@ -40,7 +45,7 @@ public class CadastroUsuarioController {
     private Button btnCadastro;
 
     @FXML
-    void handleCadastro(ActionEvent event) throws SQLException {
+    void handleCadastro(ActionEvent event) throws SQLException, IOException {
         String nome = txtUser.getText();
         String email = txtEmail.getText();
         String senha = txtSenha.getText();
@@ -57,7 +62,7 @@ public class CadastroUsuarioController {
             } catch (SQLException e) {
                 AlertDialog.SimpleDialog("Erro","Não foi possivel realizar o cadastro!");
                 txtUser.getScene().getWindow().hide();
-                //log não foi possivel cadastrar
+                Logs.writeLog(new ErrorLog("não foi possivel cadastrar"));
                 throw new RuntimeException(e);
             }
         }
@@ -65,30 +70,30 @@ public class CadastroUsuarioController {
     }
 
     @FXML
-    void handleCancel(ActionEvent event) {
+    void handleCancel(ActionEvent event) throws IOException {
         txtUser.getScene().getWindow().hide();
         try {
             app.OpenScreen("Login");
         } catch (IOException e) {
-            // log não conseguiu abrir tela
+            Logs.writeLog(new ErrorLog("log não conseguiu abrir tela"));
             throw new RuntimeException(e);
         }
     }
 
     @FXML
-    void handleLogin(ActionEvent event) {
+    void handleLogin(ActionEvent event) throws IOException {
         boolean login  = dao.login(txtUser.getText(), txtSenha.getText());
         if (login){
             try {
                 app.OpenScreen("Home");
             } catch (IOException e) {
-                // log não conseguiu abrir tela
+                Logs.writeLog(new ErrorLog("log não conseguiu abrir tela"));
                 throw new RuntimeException(e);
             }
         }
     }
 
-    private static boolean checkValidyUser(String username, String email){
+    private static boolean checkValidyUser(String username, String email) throws IOException {
         boolean validyUser = true;
         try {
             if(dao.verificaUsuario(username)){
@@ -101,7 +106,7 @@ public class CadastroUsuarioController {
                 AlertDialog.SimpleDialog("","E-mail já está cadastrado!");
             }
         } catch (SQLException e) {
-            //log Não foi possivel validar dados
+            Logs.writeLog(new ErrorLog("Não foi possível validar os dados"));
             throw new RuntimeException(e);
         }
 

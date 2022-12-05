@@ -135,47 +135,6 @@ public class ProdutoDAO {
         }
     }
 
-    public ArrayList<Produto> buscarTodosProdutos() {
-        String sql = "SELECT \n" +
-                "\t\tp.*, \n" +
-                "\t\te.endereco, \n" +
-                "\t\tf.codigo as codigo_fornecedor, \n" +
-                "        e.quantidade as estoque \n" +
-                "\tFROM stkcontrol.produto p \n" +
-                "inner join fornecedor f \n" +
-                "\ton p.fornecedor_id = f.fornecedor_id\n" +
-                "inner join estoque e \n" +
-                "\ton p.produto_id = e.produto_id;";
-
-        try (PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery();
-
-            ArrayList<Produto> produtos = new ArrayList<Produto>();
-            while (rs.next()) {
-                Produto p = new Produto(
-                        Integer.parseInt(rs.getString("produto_id")),
-                        rs.getString("codigo"),
-                        rs.getString("descricao"),
-                        Float.parseFloat(rs.getString("preco_custo")),
-                        Float.parseFloat(rs.getString("preco_venda")),
-                        Float.parseFloat(rs.getString("ipi")),
-                        rs.getString("codigo_fornecedor"),
-                        Float.parseFloat(rs.getString("estoque")),
-                        rs.getString("endereco"),
-                        rs.getString("unidade_medida")
-                );
-                produtos.add(p);
-
-            }
-            return produtos;
-
-        } catch (SQLException ex) {
-            System.err.println("Erro " + ex);
-        }
-        return null;
-    }
-
-
     public ObservableList<ProductTable> carregaProdutos() {
         ObservableList<ProductTable> produtos = FXCollections.observableArrayList();
         String sql = "CALL busca_produtos()";
@@ -194,7 +153,7 @@ public class ProdutoDAO {
                         rs.getString("unidade_medida"),
                         rs.getString("codigo_fornecedor"),
                         rs.getString("fornecedor"),
-                        "10/10/2022"
+                        rs.getString("movimento")
                 );
                 produtos.add(data);
             }
@@ -254,4 +213,21 @@ public class ProdutoDAO {
         }
 
     }
+
+    public void simulaVenda(String codigo, double quantidade){
+        String sql = "Call simula_venda(?,?);";
+
+        try (PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql)) {
+            stmt.setString(1,codigo);
+            stmt.setString(2,String.valueOf(quantidade));
+
+            System.out.println(stmt);
+            ResultSet rs = stmt.executeQuery();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+
+
